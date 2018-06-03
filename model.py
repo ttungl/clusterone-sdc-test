@@ -24,7 +24,7 @@ images = [] 		# for features input
 steering_set = [] 	# for labels output
 
 def get_log():
-	with open('ttungl/data-sdc-test/data/driving_log.csv') as csvfile:
+	with open('data-sdc-test/data/driving_log.csv') as csvfile:
 	  reader = csv.reader(csvfile)
 	  for line in reader:
 	    lines.append(line)
@@ -68,21 +68,21 @@ def shadow_augmentation(image):
 
 def process_images(center_path, left_path, right_path, steering, images, steering_set):
 	# center
-	center_image = cv2.imread('ttungl/data-sdc-test/data/IMG/' + center_path.split('/')[-1]) # extract the image from the path
+	center_image = cv2.imread('data-sdc-test/data/IMG/' + center_path.split('/')[-1]) # extract the image from the path
 	center_image = cv2.cvtColor(center_image, cv2.COLOR_BGR2RGB)		# convert BGR to RGB
 	center_image = brightness_process(center_image)						# brightness process
 	center_image = shadow_augmentation(center_image)					# shadow augmentation 
 	images.append(center_image)											
 	steering_set.append(steering)
 	# left
-	left_image = cv2.imread('ttungl/data-sdc-test/data/IMG/' + left_path.split('/')[-1])
+	left_image = cv2.imread('data-sdc-test/data/IMG/' + left_path.split('/')[-1])
 	left_image = cv2.cvtColor(left_image, cv2.COLOR_BGR2RGB)
 	left_image = brightness_process(left_image)
 	left_image = shadow_augmentation(left_image)
 	images.append(left_image)
 	steering_set.append(steering + steering_correction)
 	# right
-	right_image = cv2.imread('ttungl/data-sdc-test/data/IMG/' + right_path.split('/')[-1])
+	right_image = cv2.imread('data-sdc-test/data/IMG/' + right_path.split('/')[-1])
 	right_image = cv2.cvtColor(right_image, cv2.COLOR_BGR2RGB)
 	right_image = brightness_process(right_image)
 	right_image = shadow_augmentation(right_image)
